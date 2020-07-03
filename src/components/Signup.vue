@@ -1,127 +1,112 @@
 <template>
-    <div class="vertical-center" style="margin-top:6%">
-         <div class="inner-block">
-            <div class="jumbotron ">
-                <div class="container ">
-                    <div class="row">
-                        <div class="col-sm-8 offset-sm-2">
-                            <div>
-                                <h2>{{$t('signup-msg')}}</h2>
-                                <form @submit.prevent="handleSubmit">
-                                    <div class="form-group">
-                                        <label for="firstName">{{$t('first-name')}}</label>
-                                        <input type="text" v-model="user.firstName" id="firstName" name="firstName" class="form-control" :class="{ 'is-invalid': submitted && $v.user.firstName.$error }" />
-                                        <div v-if="submitted && !$v.user.firstName.required" class="invalid-feedback">First Name is required</div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="lastName">{{$t('last-name')}}</label>
-                                        <input type="text" v-model="user.lastName" id="lastName" name="lastName" class="form-control" :class="{ 'is-invalid': submitted && $v.user.lastName.$error }" />
-                                        <div v-if="submitted && !$v.user.lastName.required" class="invalid-feedback">Last Name is required</div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email">{{$t('email')}}</label>
-                                        <input type="email" v-model="user.email" id="email" name="email" class="form-control" :class="{ 'is-invalid': submitted && $v.user.email.$error }" />
-                                        <div v-if="submitted && $v.user.email.$error" class="invalid-feedback">
-                                            <span v-if="!$v.user.email.required">Email is required</span>
-                                            <span v-if="!$v.user.email.email">Email is invalid</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">{{$t('password')}}</label>
-                                        <input type="password" v-model="user.password" id="password" name="password" class="form-control" :class="{ 'is-invalid': submitted && $v.user.password.$error }" />
-                                        <div v-if="submitted && $v.user.password.$error" class="invalid-feedback">
-                                            <span v-if="!$v.user.password.required">Password is required</span>
-                                            <span v-if="!$v.user.password.minLength">Password must be at least 6 characters</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="confirmPassword">{{$t('confirm-password')}}</label>
-                                        <input type="password" v-model="user.confirmPassword" id="confirmPassword" name="confirmPassword" class="form-control" :class="{ 'is-invalid': submitted && $v.user.confirmPassword.$error }" />
-                                        <div v-if="submitted && $v.user.confirmPassword.$error" class="invalid-feedback">
-                                            <span v-if="!$v.user.confirmPassword.required">Confirm Password is required</span>
-                                            <span v-else-if="!$v.user.confirmPassword.sameAsPassword">Passwords must match</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-primary" v-on:click.prevent="PostReq">Sign Up</button>
-                                        <p class="forgot-password text-right">
-                                            Already registered 
-                                            <router-link :to="{name: 'login'}">sign in?</router-link>
-                                        </p>
-                                        
-                                    </div>
-                                    <p style="color:red">
-                                            {{msg}}
-                                        </p>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-    </div>
+    <div class="vue-tempalte">
+        <form @submit.prevent="handleSubmit">
+            <h3>Sign In</h3>
 
+            <div class="form-group">
+                <label>Email address</label>
+                <input type="email" v-model="user.email" id="email" name="email" class="form-control" :class="{ 'is-invalid': submitted && $v.user.email.$error }" placeholder="you@example.com" />
+                                <div v-if="submitted && $v.user.email.$error" class="invalid-feedback">
+                                    <span v-if="!$v.user.email.required">Email is required</span>
+                                    <span v-if="!$v.user.email.email">Email is invalid</span>
+                                </div>
+                                </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" v-model="user.password" id="password" name="password" class="form-control" :class="{ 'is-invalid': submitted && $v.user.password.$error }" placeholder="Password"  />
+                                <div v-if="submitted && $v.user.password.$error" class="invalid-feedback">
+                                    <span v-if="!$v.user.password.required">Password is required</span>
+                                </div>
+                                </div>
+
+            <button type="submit" @click.prevent="LoginReq" class="btn btn-dark btn-lg btn-block">Sign In</button>
+
+            <p style="color:red; padding-top:10px">{{msg}}</p>
+
+            <p class="forgot-password text-right mt-2 mb-4">
+                <router-link to="/forgot-password">Forgot password ?</router-link>
+            </p>
+            
+             <p class="signup text-left mt-2 mb-4">
+                Not Registered!
+                <router-link :to="{name: 'signup'}">SignUp?</router-link>
+            </p>
+
+            <div class="social-icons">
+                <ul>
+                    <li><a href="#"><i class="fa fa-google"></i></a></li>
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                </ul>
+            </div>
+
+        </form>
+    </div>
 </template>
 
 <script>
-    import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
-    import { REGISTER_ADDRESS } from '@/constants.js'
+    import { required, email } from "vuelidate/lib/validators";
+  
     export default {
+        name:'Login',
         data() {
             return {
                 msg: "",
                 user:
-                {
-                    email : "",
-                    password : "",
-                    firstName : "",
-                    lastName : "",
-                    mobileNo : ""
-                },
-                submitted: false
-            }
+                    {
+                        email : "",
+                        password : "",
+                    }
+                }
         },
-
         validations: {
             user: {
-                firstName: { required },
-                lastName: { required },
                 email: { required, email },
-                password: { required, minLength: minLength(6) },
-                confirmPassword: { required, sameAsPassword: sameAs('password') }
+                password: { required },
             }
         },
         methods:{
+           
+                 LoginReq:function()
+                 {
+    
+                this.$http.post("http://localhost:8082/login",this.user, {"content-type": "application/json" })
+                    .then(function(response){
+                    this.msg=response.bodyText
+                    console.log(this.msg)
+                    if (response.status === 200) {
+                        
+                        this.$session.start()
+                         this.$store.commit("setAuthentication",true);
+                       this.$router.replace({name:"home-page"});
+                  
+                        
+                        }
+                    })
+                    .catch(e => { 
+                        this.msg=e.bodyText;
+                        console.log(e); })
+            
+            }
+        
 
-            handleSubmit() {
+            },
+            handleSubmit() 
+            {
                 this.submitted = true;
 
                 // stop here if form is invalid
                 this.$v.$touch();
-                if (this.$v.$invalid) {
+                if (this.$v.$invalid) 
+                {
                     return;
                 }
 
                 alert("SUCCESS!! :-)\n\n" + JSON.stringify(this.user));
-            },
-            
-            PostReq: function()
-            {
-    
-                if (this.user.email) {
-                this.$http.post(REGISTER_ADDRESS,this.user, {"content-type": "application/json" })
-                    .then(function(response){
-                    console.log(response);
-                    this.msg=JSON.parse(response.bodyText).msg                                                                                                                                                                                                                                         
-                    })
-                    .catch(e => { 
-                        this.msg=JSON.parse(e.bodyText).msg;
-                        console.log(e); })
-                }
-            
             }
         }
-    }
+    
+    
+           
 </script>
