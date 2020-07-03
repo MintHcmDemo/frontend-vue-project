@@ -23,6 +23,31 @@ Vue.use(VueRouter)
     path: '/home-page',
     name: 'home-page',
     component: () => import('../components/HomePage.vue')
+  },
+  {
+    path: '/support',
+    name: 'support',
+    component: () => import('../components/Support.vue')
+  },
+  {
+    path: '/installation-guide',
+    name: 'installation-guide',
+    component: () => import('../components/InstallationGuide.vue')
+  },
+  {
+    path: '/configuration-guide',
+    name: 'configuration-guide',
+    component: () => import('../components/ConfigurationGuide.vue')
+  },
+  {
+    path: '/forum',
+    name: 'forum',
+    component: () => import('../components/Forum.vue')
+  },
+  {
+    path: '/documentation',
+    name: 'documentation',
+    component: () => import('../components/Documentation.vue')
   }
 ]
 

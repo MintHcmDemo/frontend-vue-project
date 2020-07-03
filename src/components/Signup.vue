@@ -1,67 +1,73 @@
 <template>
-    <div class="jumbotron" style="padding-top: 10em;">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-8 offset-sm-2">
-                    <div>
-                        <h2>Sign Up</h2>
-                        <form @submit.prevent="handleSubmit">
-                            <div class="form-group">
-                                <label for="firstName">First Name</label>
-                                <input type="text" v-model="user.firstName" id="firstName" name="firstName" class="form-control" :class="{ 'is-invalid': submitted && $v.user.firstName.$error }" />
-                                <div v-if="submitted && !$v.user.firstName.required" class="invalid-feedback">First Name is required</div>
+    <div class="vertical-center" style="margin-top:6%">
+         <div class="inner-block">
+            <div class="jumbotron ">
+                <div class="container ">
+                    <div class="row">
+                        <div class="col-sm-8 offset-sm-2">
+                            <div>
+                                <h2>{{$t('signup-msg')}}</h2>
+                                <form @submit.prevent="handleSubmit">
+                                    <div class="form-group">
+                                        <label for="firstName">{{$t('first-name')}}</label>
+                                        <input type="text" v-model="user.firstName" id="firstName" name="firstName" class="form-control" :class="{ 'is-invalid': submitted && $v.user.firstName.$error }" />
+                                        <div v-if="submitted && !$v.user.firstName.required" class="invalid-feedback">First Name is required</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastName">{{$t('last-name')}}</label>
+                                        <input type="text" v-model="user.lastName" id="lastName" name="lastName" class="form-control" :class="{ 'is-invalid': submitted && $v.user.lastName.$error }" />
+                                        <div v-if="submitted && !$v.user.lastName.required" class="invalid-feedback">Last Name is required</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">{{$t('email')}}</label>
+                                        <input type="email" v-model="user.email" id="email" name="email" class="form-control" :class="{ 'is-invalid': submitted && $v.user.email.$error }" />
+                                        <div v-if="submitted && $v.user.email.$error" class="invalid-feedback">
+                                            <span v-if="!$v.user.email.required">Email is required</span>
+                                            <span v-if="!$v.user.email.email">Email is invalid</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">{{$t('password')}}</label>
+                                        <input type="password" v-model="user.password" id="password" name="password" class="form-control" :class="{ 'is-invalid': submitted && $v.user.password.$error }" />
+                                        <div v-if="submitted && $v.user.password.$error" class="invalid-feedback">
+                                            <span v-if="!$v.user.password.required">Password is required</span>
+                                            <span v-if="!$v.user.password.minLength">Password must be at least 6 characters</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="confirmPassword">{{$t('confirm-password')}}</label>
+                                        <input type="password" v-model="user.confirmPassword" id="confirmPassword" name="confirmPassword" class="form-control" :class="{ 'is-invalid': submitted && $v.user.confirmPassword.$error }" />
+                                        <div v-if="submitted && $v.user.confirmPassword.$error" class="invalid-feedback">
+                                            <span v-if="!$v.user.confirmPassword.required">Confirm Password is required</span>
+                                            <span v-else-if="!$v.user.confirmPassword.sameAsPassword">Passwords must match</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-primary" v-on:click.prevent="PostReq">Sign Up</button>
+                                        <p class="forgot-password text-right">
+                                            Already registered 
+                                            <router-link :to="{name: 'login'}">sign in?</router-link>
+                                        </p>
+                                        
+                                    </div>
+                                    <p style="color:red">
+                                            {{msg}}
+                                        </p>
+                                </form>
                             </div>
-                            <div class="form-group">
-                                <label for="lastName">Last Name</label>
-                                <input type="text" v-model="user.lastName" id="lastName" name="lastName" class="form-control" :class="{ 'is-invalid': submitted && $v.user.lastName.$error }" />
-                                <div v-if="submitted && !$v.user.lastName.required" class="invalid-feedback">Last Name is required</div>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" v-model="user.email" id="email" name="email" class="form-control" :class="{ 'is-invalid': submitted && $v.user.email.$error }" />
-                                <div v-if="submitted && $v.user.email.$error" class="invalid-feedback">
-                                    <span v-if="!$v.user.email.required">Email is required</span>
-                                    <span v-if="!$v.user.email.email">Email is invalid</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" v-model="user.password" id="password" name="password" class="form-control" :class="{ 'is-invalid': submitted && $v.user.password.$error }" />
-                                <div v-if="submitted && $v.user.password.$error" class="invalid-feedback">
-                                    <span v-if="!$v.user.password.required">Password is required</span>
-                                    <span v-if="!$v.user.password.minLength">Password must be at least 6 characters</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="confirmPassword">Confirm Password</label>
-                                <input type="password" v-model="user.confirmPassword" id="confirmPassword" name="confirmPassword" class="form-control" :class="{ 'is-invalid': submitted && $v.user.confirmPassword.$error }" />
-                                <div v-if="submitted && $v.user.confirmPassword.$error" class="invalid-feedback">
-                                    <span v-if="!$v.user.confirmPassword.required">Confirm Password is required</span>
-                                    <span v-else-if="!$v.user.confirmPassword.sameAsPassword">Passwords must match</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <button class="btn btn-primary" v-on:click.prevent="PostReq">Sign Up</button>
-                                <p class="forgot-password text-right">
-                                    Already registered 
-                                    <router-link :to="{name: 'login'}">sign in?</router-link>
-                                </p>
-                                
-                            </div>
-                            <p style="color:red">
-                                    {{msg}}
-                                </p>
-                        </form>
+                        </div>
                     </div>
                 </div>
+                
             </div>
         </div>
-        
     </div>
+
 </template>
 
 <script>
     import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
+    import { REGISTER_ADDRESS } from '@/constants.js'
     export default {
         data() {
             return {
@@ -105,13 +111,13 @@
             {
     
                 if (this.user.email) {
-                this.$http.post("http://localhost:8081/register",this.user, {"content-type": "application/json" })
+                this.$http.post(REGISTER_ADDRESS,this.user, {"content-type": "application/json" })
                     .then(function(response){
-                    console.log(response.bodyText);
-                    this.msg=response.bodyText
+                    console.log(response);
+                    this.msg=JSON.parse(response.bodyText).msg                                                                                                                                                                                                                                         
                     })
                     .catch(e => { 
-                        this.msg=e.bodyText;
+                        this.msg=JSON.parse(e.bodyText).msg;
                         console.log(e); })
                 }
             
