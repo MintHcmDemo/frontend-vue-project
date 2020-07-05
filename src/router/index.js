@@ -4,6 +4,11 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
   const routes = [
+    {
+      path: '/contactus',
+      name: 'ContactUs',
+      component: () => import('../components/ContactUs.vue')
+    },
   {
     path: '/',
     name: 'signup',

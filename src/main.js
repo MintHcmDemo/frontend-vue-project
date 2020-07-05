@@ -7,6 +7,8 @@ import Vuelidate from 'vuelidate'
 import i18n from '@/plugins/i18n'
 import { BootstrapVue } from 'bootstrap-vue'
 
+
+
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faChevronRight, faChevronDown, faSlidersH, faChild, faServer} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -23,7 +25,6 @@ Vue.use(VueResource)
 Vue.use(VueSession)
 Vue.use(Vuelidate)
 Vue.use(BootstrapVue)
-
 
 
 new Vue({
