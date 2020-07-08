@@ -1,8 +1,12 @@
 <template>
-   <div class="vue-tempalte">
+    <div style="margin-top:6%" width=50%>
+         <div class="inner-block">
+                <div class="container ">
+                    <div class="row">
+                        
 
         <div class="alert alert-success" role="alert">
-            <h2 class="alert-heading">CONTACT</h2>
+            <h2 class="alert-heading">CONTACT US</h2>
         </div>
 
         <form @submit.prevent="handleSubmit">
@@ -33,13 +37,8 @@
                 </div>
             </div>
 
-            
-
-
             <div class="form-group">
                 <label for="email">Email</label>
-
-                
                 <input type="email" v-model="userForm.email" id="email" name="email" class="form-control"
                 
                     :class="{ 'is-invalid': isSubmitted && $v.userForm.email.$error }" />
@@ -49,24 +48,15 @@
                 </div>
             </div>
              <div class="form-group">
-          
-            
-         
-           <textarea  id="messege" rows="5" v-model="userForm.messege" class="form-control"
+           <textarea  id="message" rows="5" v-model="userForm.message" class="form-control"
                 
-                    :class="{ 'is-invalid': isSubmitted && $v.userForm.messege.$error }">
-                <div v-if="isSubmitted && $v.userForm.messege.$error" class="invalid-feedback">
-                    <span v-if="!$v.userForm.messege">this field is required</span>
-                    <span v-if="!$v.userForm.messege">Please provide valid text</span>
+                    :class="{ 'is-invalid': isSubmitted && $v.userForm.message.$error }">
+                <div v-if="isSubmitted && $v.userForm.message.$error" class="invalid-feedback">
+                    <span v-if="!$v.userForm.message">this field is required</span>
+                    <span v-if="!$v.userForm.message">Please provide valid text</span>
                 </div></textarea>
              </div>
-      
-
-
-                    
-
-        
-
+    
             <div class="form-group form-check">
                 <input type="checkbox" v-model="userForm.accept" @change="$v.userForm.accept.$touch()" id="accept" class="form-check-input">
                 <label class="form-check-label" :class="{ 'is-invalid': isSubmitted && $v.userForm.accept.$error }" for="accept">Accept terms &nbsp; conditions</label>
@@ -80,7 +70,7 @@
                 <button class="btn btn-danger btn-block" @click.prevent="PostReq">Submit</button>
             </div>
         </form>
-        
+         </div> </div> </div>  
     </div>
 </template>
 
@@ -91,18 +81,20 @@
         minLength
         
     } from "vuelidate/lib/validators";
+    
 
     export default {
         
         data() {
             return {
+                msg :"Success!!!",
                 userForm: {
                     fname: "",
                     lname:"",
                     company:"",
                     phone:"",
                     email:"",
-                    messege:"",
+                    message:"",
                     accept: ""
                     
                 },
@@ -128,7 +120,7 @@
                     required,
                     email
                 },
-                messege:{
+                message:{
                     required
                 },
                 
@@ -154,7 +146,7 @@
             {
     
                 if (this.userForm.email) {
-                this.$http.post("http://localhost:8084/users",this.userForm, {"content-type": "application/json" })
+                this.$http.post("http://localhost:8082/contactus",this.userForm, {"content-type": "application/json" })
                     .then(function(response){
                     console.log(response.bodyText);
                     this.msg=response.bodyText
@@ -167,3 +159,14 @@
         }     
     };
 </script>
+<style scoped>
+.inner-block {
+    width: 20%;
+    margin: auto;
+    background: #ffffff;
+    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+    padding: 40px 55px 45px 55px;
+    border-radius: 15px;
+    transition: all .3s;
+  }
+</style>
