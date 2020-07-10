@@ -52,12 +52,12 @@
           
             
          
-           <textarea  id="messege" rows="5" v-model="userForm.messege" class="form-control"
+           <textarea  id="message" rows="5" v-model="userForm.message" class="form-control"
                 
-                    :class="{ 'is-invalid': isSubmitted && $v.userForm.messege.$error }">
-                <div v-if="isSubmitted && $v.userForm.messege.$error" class="invalid-feedback">
-                    <span v-if="!$v.userForm.messege">this field is required</span>
-                    <span v-if="!$v.userForm.messege">Please provide valid text</span>
+                    :class="{ 'is-invalid': isSubmitted && $v.userForm.message.$error }">
+                <div v-if="isSubmitted && $v.userForm.message.$error" class="invalid-feedback">
+                    <span v-if="!$v.userForm.message">this field is required</span>
+                    <span v-if="!$v.userForm.message">Please provide valid text</span>
                 </div></textarea>
              </div>
       
@@ -102,7 +102,7 @@
                     company:"",
                     phone:"",
                     email:"",
-                    messege:"",
+                    message:"",
                     accept: ""
                     
                 },
@@ -128,7 +128,7 @@
                     required,
                     email
                 },
-                messege:{
+                message:{
                     required
                 },
                 
@@ -154,7 +154,7 @@
             {
     
                 if (this.userForm.email) {
-                this.$http.post("http://localhost:8084/users",this.userForm, {"content-type": "application/json" })
+                this.$http.post("http://localhost:8082/contactus",this.userForm, {"content-type": "application/json" })
                     .then(function(response){
                     console.log(response.bodyText);
                     this.msg=response.bodyText
