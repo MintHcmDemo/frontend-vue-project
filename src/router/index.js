@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store';
 
 Vue.use(VueRouter)
 
@@ -32,7 +33,14 @@ Vue.use(VueRouter)
   {
     path: '/home-page',
     name: 'home-page',
-    component: () => import('../components/HomePage.vue')
+    component: () => import('../components/HomePage.vue'),
+    beforeEnter: (to,from,next)=>{
+      if(store.state.authenticated==false){
+         next("/login");
+      }else{
+        next();
+      }
+    }
   },
   {
     path: '/support',

@@ -94,8 +94,9 @@
                     console.log(response)
                     if (response.status === 200) {
                         
-                        this.$session.start()
-                        this.$router.push('/home-page')
+                         this.$session.start()
+                         this.$store.commit("setAuthentication",true);
+                       this.$router.replace({name:"home-page"});
                         
                         }
                     })

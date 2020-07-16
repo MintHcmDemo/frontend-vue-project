@@ -6,6 +6,7 @@ import VueSession from 'vue-session'
 import Vuelidate from 'vuelidate'
 import i18n from '@/plugins/i18n'
 import { BootstrapVue } from 'bootstrap-vue'
+import store from "./store";
 
 
 
@@ -28,7 +29,7 @@ Vue.use(BootstrapVue)
 
 
 new Vue({
-  router,
+  router,store,
   render: h => h(App),
   i18n
 }).$mount('#app')
