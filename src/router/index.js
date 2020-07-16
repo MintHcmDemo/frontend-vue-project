@@ -5,9 +5,9 @@ Vue.use(VueRouter)
 
   const routes = [
     {
-      path: '/contactus',
-      name: 'ContactUs',
-      component: () => import('../components/ContactUs.vue')
+      path: '/contact',
+      name: 'contact',
+      component: () => import('../components/Contact.vue')
     },
   {
     path: '/',

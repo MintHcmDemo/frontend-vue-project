@@ -26,7 +26,7 @@
             </b-nav>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link pr-3" to="/contactus">Contact Us</router-link>
+            <router-link class="nav-link pr-3" to="/contact">Contact Us</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link pr-3" to="/login">Sign in</router-link>
