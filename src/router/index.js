@@ -9,6 +9,11 @@ Vue.use(VueRouter)
       name: 'contact',
       component: () => import('../components/Contact.vue')
     },
+    {
+      path: '/download',
+      name: 'download',
+      component: () => import('../components/download.vue')
+    },
   {
     path: '/',
     name: 'signup',
