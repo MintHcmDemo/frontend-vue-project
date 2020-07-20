@@ -66,7 +66,13 @@ Vue.use(VueRouter)
     path: '/documentation',
     name: 'documentation',
     component: () => import('../components/Documentation.vue')
-  }
+  },
+    {
+      path: '/reset-password',
+      name: 'reset-password',
+      component: () => import('../components/ResetPassword.vue')
+    },
+  
 ]
 
 const router = new VueRouter({
