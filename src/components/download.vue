@@ -122,9 +122,9 @@
 <script>
 import Vue from 'vue'
 import axios from 'axios'
-import Vueaxios from 'vue-axios'
+//import Vueaxios from 'vue-axios'
 
-Vue.use(Vueaxios,axios)
+Vue.use(axios)
 
 export default {
 data () {
@@ -136,7 +136,7 @@ data () {
 async onClick () {
     
 
-      axios.get('http://localhost:8087/downloadFile',
+      axios.get('http://localhost:8089/downloadFile',
       {
         method: 'GET',
         responseType: 'blob',
