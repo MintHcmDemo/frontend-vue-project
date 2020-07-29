@@ -37,7 +37,7 @@
           <li class="nav-item">
             <router-link class="btn btn-outline-primary" to="/">Sign up</router-link>
           </li>
-          <li class="nav-item" style="margin-left:15px;margin-top:3px">
+          <li class="nav-item" style="margin-left:15px">
             <SelectLocale />
           </li>
         </ul>

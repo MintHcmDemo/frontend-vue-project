@@ -1,14 +1,7 @@
 <template>
   <div>
-    <select v-model="$i18n.locale">
-      <option
-        v-for="(lang, i) in langs"
-        :key="`lang-${i}`"
-        :value="lang"
-      >
-        {{ lang }}
-      </option>
-    </select>
+    <b-form-select v-model="$i18n.locale" :options="langs" class="btn btn-outline-primary">
+    </b-form-select>
   </div>
 </template>
 

@@ -51,7 +51,7 @@ methods:
 {
     submitData(e)
     {
-        this.$http.post('http://localhost:9090/users',this.post).then(resp=>{
+        this.$http.post('http://localhost:9090/contactus',this.post).then(resp=>{
             console.warn("result",resp)
             alert("Thank You....We Will Contact You Soon");
         })

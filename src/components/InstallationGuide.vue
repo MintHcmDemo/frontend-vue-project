@@ -127,122 +127,108 @@
                         <p class="row float-left">Installation guide for MintHCM </p>
                         
                         <h4 class="row float-left my-4 border-bottom mr-4">Preparing for installation</h4>
-                        <p class="row float-left">To install MintHCM you will need Linux or Windows platform, 
-                            a web server with PHP installed and a database. </p>
-                        <p class="row float-left ml-3">1. Download MintHCM zip file from <a href="">https://minthcm.org/download/</a></p>
-                        <p class="row float-left ml-3">2. Copy the zip file to your server and unzip it in directory of your choice</p>
-                        <p class="row float-left ml-3">3. Change files permissions in that directory accordingly with your platform demands</p>
-                        <p class="row float-left">For Ubuntu Linux/Apache it will be: </p>
-                        <div class="bg-light border p-2" style="width:700px">
-                            <code class="row float-left m-1 ml-3" style="text-align: justify;">cd ../&lt;yourMintHCMdirectory&gt;<br>
-                                sudo chown -R www-data:www-data *<br>
-                                sudo chmod -R 755 *</code>
+                        <p class="row float-left">To install MintHCM you will need following:</p>
+                        <p class="row float-left ml-3">• Linux or Windows platform</p>
+                        <p class="row float-left ml-3">• Java</p>
+                        <p class="row float-left ml-3">• Eclipse with Spring Tools or Spring Tool Suite</p>
+                        <p class="row float-left ml-3">• PostgreSQL database</p>
+                        <p class="row float-left ml-5">I. Setup the PostgreSQL with following properties:</p>
+                        <div class="float-left ml-5">
+                            <ol type="i">
+                                <li v-for="property in postgresProps" :key="property.message">
+                                    <p style="justify-content: left;display: flex">{{ property.message }}</p>
+                                </li>
+                            </ol>
                         </div>
-
+                        <p class="row float-left ml-3">• Noje.js  </p>
+                        <p class="row float-left ml-3">• Node Package Manager (npm)</p>
+                        <p class="row float-left ml-3">• Vue CLI</p>
+                        <p class="row float-left">Clone the following repositories using git bash in the directory of your choice:</p>
+                        <div class="float-left ml-3">
+                            <ul type="square">
+                                <li v-for="repository in repositoriesNames" :key="repository.message">
+                                    <p style="justify-content: left;display: flex"><a :href="repository.message">{{ repository.message }}</a></p>
+                                </li>
+                            </ul>
+                        </div>
+                        
                         <h4 class="row float-left my-4 border-bottom mr-4">Installation of MintHCM</h4>
                         <p class="row float-left">Once you have your files prepared, 
                             you can start actual installation. To do so, follow the steps below: </p>
-                        <p class="row float-left">1. Put following URL into your web browser:</p>
-                        <div class="bg-light border p-2 mb-3" style="width:700px">
-                            <code class="row float-left m-1 ml-3" style="text-align: justify;">http://&lt;yourServer&gt;/&lt;yourMintHCMdirectory&gt;/install.php<br>
-                            </code>
-                        </div>
-                        <p class="row float-left">The installation wizard will start now. </p>
-                        <p class="row float-left">2. On the first screen you have to accept the license agreement. 
-                            After that you can click next button. </p>
+                        <p class="row float-left">1. Import the Java projects repositories in Eclipse as gradle project.</p>
                         <div class="border float-left mb-3" style="width:80%">
                             <img :src="img1" width="99%" class="m-1 border">
-                            <span class="ml-1 float-left small">MintHCM - Installation - Start</span>    
+                            <span class="ml-1 float-left small">Importing local repositories in Eclipse</span>    
                         </div>
-                        <p class="row float-left">3. In a moment another screen with system environment information will appear. </p>
-                        <div class="border float-left mb-3" style="width:80%">
-                            <img :src="img2" width="99%" class="m-1 border">
-                            <span class="ml-1 float-left small">MintHCM - Installation - System Environment</span>    
+                        <p class="row float-left mt-3">2. Set your github account username and password as 
+                            Environment variables GIT_USERNAME and GIT_PASSWORD.</p>
+                        <p class="row float-left ml-2">To set Environment variables in Windows follow the procedure below:</p>
+                        <p class="row float-left ml-2">i. Open the Start Search, type in “env”, and choose “Edit the system environment variables”: </p>
+
+                        <div class="border float-left ml-2 mb-5" style="width:30%">
+                            <img :src="img2" width="97%" class="m-1 border">
+                            <span class="ml-1 float-left small">Start Menu</span>    
                         </div>
-                        <p class="row float-left mr-3" align="left">What is really important here is an instruction how to set up a Crontab, 
-                            that allows MintHCM to perform actions in the background of your server. 
-                            You should do this only after the installation is concluded. </p>
-                        <p class="row float-left">To do so, you have to edit your web server user's crontab file. You can open it with a command:</p>
-                        <div class="bg-light border p-2" style="width:700px">
-                            <code class="row float-left m-1 ml-3" style="text-align: justify;">sudo crontab -e -u www-data (or another actual user)</code>
+                        <p class="row float-left ml-2">ii. Click the “Environment Variables…” button. </p>
+
+                        <div class="border float-left ml-2 mb-5" style="width:40%">
+                            <img :src="img3" width="97%" class="m-1 border">
+                            <span class="ml-1 float-left small">System Properties Menu</span>    
                         </div>
-                        <p class="row float-left mt-3">Now you have to add the following line to the crontab file: </p>
-                        <div class="bg-light border p-2" style="width:700px">
-                            <code class="row float-left m-1 ml-3" style="text-align: justify;">*    *    *    *    *     cd /var/www/MintHCM/MintHCM; php -f cron.php > /dev/null 2>&1</code>
+                        <p class="row float-left ml-2">iii. Set the environment variables as needed. </p>
+
+                        <div class="border float-left ml-2 mb-5" style="width:40%">
+                            <img :src="img4" width="97%" class="m-1 border">
+                            <span class="ml-1 float-left small">Environment Variables Window</span>    
                         </div>
-                        <div class="row float-left mt-3"><p> Information about Crontab edition may be also found in <a href="" class="text-danger">Schedulers</a> in <a class="text-success" href="">Administration panel</a> of MintHCM after installation. </p> </div>
-                        <p class="row float-left">Note that Windows or other systems have different background processes mechanisms.</p>
-                        <p class="row float-left">4. On the next screen you have to provide basic database configuration and administrator user data. </p>
-                        <p class="row float-left mr-3" align="left">If your database is on the same server that MintHCM instance, you may put 'localhost' in Host Name field. If it is somewhere else, put there a proper host of your database.</p>
-                        <div class="border float-left mb-3" style="width:80%">
-                            <img :src="img3" width="99%" class="m-1 border">
-                            <span class="ml-1 float-left small">MintHCM - Installation - Database configuration</span>    
-                        </div>
-                        <p class="row float-left"> MintHCM Database User is by default set to root. If you want to choose another user, change it here. </p>
-                        <p class="row float-left">5. Set up your administrator user name and password, so you can log in MintHCM later. </p>
-                        <div class="row float-left"><p class=" float-left mr-4" align="left">In these screen you can also configure basic <a href="" class="text-danger">global settings</a> of your MintHCM instance, such as email server settings, 
-                            branding (including logo of your company), system settings (i.e. time and data format) and security options. 
-                            All of those settings may be configured after the installation as well.</p> </div>
-                        <p class="row float-left">6. If everything was alright with data provided, installation will begin. It may take a while. </p>
-                        <div class="border float-left mb-3" style="width:80%">
-                            <img :src="img4" width="99%" class="m-1 border">
-                            <span class="ml-1 float-left small">MintHCM - Installation - Installation in progress</span>    
-                        </div>
-                        <p class="row float-left">7. After installation is completed, you will see the last screen. Among others, it provides information of total time of installation and memory use. </p>
+                        <p class="row float-left">3. Run the imported Microservices projects as a Spring Boot App:</p>
                         <div class="border float-left mb-3" style="width:80%">
                             <img :src="img5" width="99%" class="m-1 border">
-                            <span class="ml-1 float-left small">MintHCM - Installation - Finish</span>    
+                            <span class="ml-1 float-left small">Run Java Project as Spring Boot App</span>    
+                        </div>
+                        <p class="row float-left">Run the project in the following order:</p>
+                        <div class="float-left ml-3">
+                            <ol type="1">
+                                <li v-for="microservice in microservicesRunningOrder" :key="microservice.name">
+                                    <p style="justify-content: left;display: flex">{{ microservice.name }}</p>
+                                </li>
+                            </ol>
+                        </div>
+                        <p class="row float-left mt-3">4. Install following dependencies:</p>
+                        <div class="float-left ml-3">
+                            <ul>
+                                <li v-for="dependency in dependencies" :key="dependency.name">
+                                    <p style="justify-content: left;display: flex">{{ dependency.name }}</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <p class="row float-left">Install dependencies using command :</p>
+                        <div class="bg-light border p-2 mb-3" style="width:700px">
+                            <code class="row float-left my-2 ml-3" style="text-align: justify;">npm install --save &lt;depedency&gt;</code>
+                        </div>
+                        <p class="row float-left mt-3">5. Run frontend-vue-project using following command:</p>
+                        <div class="bg-light border p-2 mb-3" style="width:700px">
+                            <code class="row float-left my-2 ml-3" style="text-align: justify;">Cd frontend-vue-project <br>
+                            npm run serve</code>
                         </div>
 
                         <h4 class="row float-left my-4 border-bottom mr-4">Troubleshooting</h4>
                         <p class="row float-left">During the installation process some errors may occur. </p>
-                        
-                        <h5 class="row float-left mb-4 mt-2">Permissions error</h5>
 
+                        <h5 class="row float-left mb-4 mt-2">Error 126 </h5>
+                        <p class="row float-left">During the running Vue Project Error 126 may occur</p>
                         <div class="border float-left mb-3" style="width:80%">
                             <img :src="img6" width="99%" class="m-1 border">
-                            <span class="ml-1 float-left small">Permissions error</span>    
+                            <span class="ml-1 float-left small">Error 126</span>    
                         </div>
-                        <p class="row float-left mr-3" align="left">This may occur, when files permissions were not change before the installation.
-                            Check your file permissions in MintHCM installation files directory,
-                            if necessary run commends provided below and start installation again. </p>
-                        <div class="bg-light border p-2" style="width:700px">
-                            <code class="row float-left my-2 ml-3" style="text-align: justify;">sudo chown -R www-data:www-data *<br>
-                                sudo chmod -R 755 *<br></code>
-                        </div>    
-                        <p class="row float-left mt-3">or if this will not work, try: </p>
-                        <div class="bg-light border p-2 my-2" style="width:700px">
-                            <code class="row float-left m-1 ml-3" style="text-align: justify;">sudo chown -R www-data:www-data .<br>
-                                sudo chmod -R 755 .<br></code>
+                        <p class="row float-left">End of lifecycle means the program unexpectedly stopped. 
+                            This can have various reasons. So it's not a syntax error and not an expected exception/error.</p>
+                        <p class="row float-left">Run the following commands:</p>
+                        <div class="bg-light border p-2 mb-3" style="width:700px">
+                            <code class="row float-left my-2 ml-3" style="text-align: justify;">npm cache verify<br>
+                            sudo rm -rf node_modules && rm ./package-lock.json && npm install</code>
                         </div>
-                        
-                        <h5 class="row float-left mb-4 mt-2">Database could not be established</h5>
-                        <p class="row float-left mr-3" align="left">"The provided database host, username, and/or password is invalid, 
-                            and a connection to the database could not be established. Please enter a valid host, username and password" 
-                        </p>
-                        <div class="border float-left mb-3" style="width:80%">
-                            <img :src="img7" width="99%" class="m-1 border">
-                            <span class="ml-1 float-left small">Database configuration error</span>    
-                        </div>
-                        <p class="row float-left mr-3" align="left">This error is most probably caused by invalid data provided by user, 
-                            such as database host name or password. To solve this, double check your host, user name, password, etc. 
-                            Also, check if your MintHCM Database user matches the actual user you can and want to use in this instance of MintHCM.  
-                        </p>   
-                        
-                        <h5 class="row float-left mb-4 mt-2">Config.php file is missing</h5>
-                        <div class="border float-left mb-3" style="width:80%">
-                            <img :src="img8" width="99%" class="m-1 border">
-                            <span class="ml-1 float-left small">MintHCM - Installation - Config.php error</span>    
-                        </div>
-                        <p class="row float-left mr-3" align="left">This error may also be caused by file permission restrictions. 
-                            You can check them and eventually restart installation. Or you can create config.php file manually.  
-                        </p>
-                        <p class="row float-left mr-3" align="left">To do so, just create config.php file in your MintHCM instance directory, 
-                            paste the code form the installer and save the file. After that, you can go to your instance 
-                            (i.e. through URL http://&lt;yourServer&gt;/&lt;yourMintHCMdirectory&gt;). 
-                                The instance should be running and you should see basic configuration options after logging in.  
-                        </p>
-                        
+
                         <h4 class="row float-left my-4 border-bottom mr-4">Process Steps</h4>
                         
                         <h4 class="row float-left my-4 border-bottom mr-4">Mentioned in other articles</h4>
@@ -279,26 +265,57 @@
   export default {
     data() {
         return {
+            dependencies:[
+                { name: '@fortawesome/fontawesome-svg-core' },
+                { name: '@fortawesome/free-solid-svg-icons' },
+                { name: 'axios' },
+                { name: 'bootstrap' },
+                { name: 'bootstrap-vue' },
+                { name: 'font-awesome' },
+                { name: 'vue-axios' },
+                { name: 'vue-i18n' },
+                { name: 'vue-resource' },
+                { name: 'vue-router' },
+                { name: 'vue-session' },
+                { name: 'vuelidate' },
+                { name: 'vuex' }
+            ],
+            microservicesRunningOrder:[
+                { name: 'ConfigServer' },
+                { name: 'UserRegistrationService' },
+                { name: 'UserLoginService' },
+                { name: 'ContactUsService' },
+            ],
+            postgresProps: [
+                { message: 'port : 5432' },
+                { message: 'username : postgres' },
+                { message: 'password : jkt123' }
+            ],
+            repositoriesNames: [
+                { message: 'https://github.com/MintHcmDemo/frontend-vue-project' },
+                { message: 'https://github.com/MintHcmDemo/ConfigServer' },
+                { message: 'https://github.com/MintHcmDemo/UserRegistrationService' },
+                { message: 'https://github.com/MintHcmDemo/UserLoginService' },
+                { message: 'https://github.com/MintHcmDemo/ContactUsService' }
+            ],
             items: [
                 { id: '1', message: "Short Description", subitems:[] },
                 { id: '2', message: "Preparing for installation", subitems:[] },
                 { id: '3', message: "Installation of MintHCM", subitems:[] },
                 { id: '4', message: "Troubleshooting", subitems:[
-                    { id: '1', message: "Permissions error", subitems:[] },
-                    { id: '2', message: "Database could not be established", subitems:[] },
-                    { id: '3', message: "Config.php file is missing", subitems:[] },
+                    { id: '1', message: "Error 126", subitems:[] }
                 ]},
                 { id: '5', message: "Process Steps", subitems:[] },
                 { id: '6', message: "Mentioned in other articles", subitems:[] }, 
             ],
-            img1: require('@/assets/1350px-MintHCM_-_Installation_-_Start.png'),
-            img2: require('@/assets/1350px-MintHCM_-_Installation_-_System_Environment.png'),
-            img3: require('@/assets/1350px-MintHCM_-_Installation_-_Database_configuration.png'),
-            img4: require('@/assets/1350px-MintHCM_-_Installation_-_Installation_in_progress.png'),
-            img5: require('@/assets/1350px-MintHCM_-_Installation_-_Finish.png'),
-            img6: require('@/assets/1350px-MintHCM_-_Installation_-_Permissions_error.png'),
-            img7: require('@/assets/1350px-MintHCM_-_Installation_-_Database_configuration_error.png'),
-            img8: require('@/assets/1350px-MintHCM_-_Installation_-_Config.php_error.png'),
+            img1: require('@/assets/Installation_Import_java_project_as_gradle_project_in_eclipse.png'),
+            img2: require('@/assets/Set_Environment_Variables_start_menu.png'),
+            img3: require('@/assets/Set_Environment_Variables_system_properties.png'),
+            img4: require('@/assets/Set_Environment_Variables_select_row_and_edit.png'),
+            img5: require('@/assets/Installation_Run_java_project_as_spring_boot_app.png'),
+            img6: require('@/assets/Installation_Error_126_vue_cli.png'),
+            img7: require('@/assets/Installation_Error_126_vue_cli.png'),
+            img8: require('@/assets/Installation_Error_126_vue_cli.png'),
             
 
         }
