@@ -8,7 +8,7 @@ Vue.use(VueRouter)
     {
       path: '/contact',
       name: 'contact',
-      component: () => import('../components/Contact.vue')
+      component: () => import('../components/ContactUs.vue')
     },
    
     {
