@@ -5,6 +5,12 @@ import store from '../store';
 Vue.use(VueRouter)
 
   const routes = [
+    
+    {
+      path: '/',
+      name: 'mainpage',
+      component: () => import('../components/Login.vue')
+    },
     {
       path: '/contact',
       name: 'contact',
@@ -17,7 +23,7 @@ Vue.use(VueRouter)
       component: () => import('../components/download.vue')
     },
   {
-    path: '/',
+    path: '/signup',
     name: 'signup',
     component: () => import('../components/Signup.vue')
   },

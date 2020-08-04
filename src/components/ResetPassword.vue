@@ -1,5 +1,5 @@
 <template>
- <div class="vue-tempalte">
+ <div class="vue-tempalte" style="margin-top:7%">
         <div class="container">
             <div class="row">
                 <div class="col-sm-18 offset-sm-4">

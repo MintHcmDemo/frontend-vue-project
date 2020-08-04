@@ -35,7 +35,7 @@
             <router-link class="nav-link pr-3" to="/login">Sign in</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="btn btn-outline-primary" to="/">Sign up</router-link>
+            <router-link class="btn btn-outline-primary" to="/signup">Sign up</router-link>
           </li>
           <li class="nav-item" style="margin-left:15px">
             <SelectLocale />

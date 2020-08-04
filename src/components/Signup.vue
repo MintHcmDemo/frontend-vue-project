@@ -1,5 +1,5 @@
 <template>
-    <div class="vertical-center" style="margin-top:6%">
+    <div style="margin-top:4%">
          <div class="inner-block">
             <div class="jumbotron ">
                 <div class="container ">

@@ -1,5 +1,5 @@
 <template>
- <div class="vue-tempalte">
+ <div class="vue-tempalte" style="margin-top:7%">
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 offset-sm-2">
@@ -19,7 +19,6 @@
                             <div class="form-group">
                                 <button class="btn btn-primary" v-on:click.prevent="PostReq">Send Mail</button>
                                <p class="forgot-password text-right mt-2 mb-4">
-                <router-link to="/reset-password">Reset password ?</router-link>
             </p>
                             </div>
                             <p style="color:red">
